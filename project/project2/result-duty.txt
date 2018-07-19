@@ -1,0 +1,512 @@
+check rate: 64Hz
+payload size: 10
+1000	500	944	500
+
+check rate: 64Hz
+payload size: 33
+1000	550	948	550
+
+check rate: 64Hz
+payload size: 43
+1000	610	912	610
+
+check rate: 64Hz
+payload size: 53
+1000	670	915	670
+
+check rate: 64Hz
+payload size: 63
+1000	729	920	729
+
+check rate: 64Hz
+payload size: 73
+1000	791	901	790
+
+check rate: 64Hz
+payload size: 83
+1000	848	890	847
+
+check rate: 64Hz
+payload size: 93
+1000	914	935	913
+
+check rate: 64Hz
+payload size: 103
+1000	975	928	974
+
+check rate: 64Hz
+payload size: 110
+1000	1003	875	1000
+
+check rate: 32Hz
+payload size: 10
+1000	500	909	500
+
+check rate: 32Hz
+payload size: 33
+1000	553	924	553
+
+check rate: 32Hz
+payload size: 43
+1000	609	900	608
+
+check rate: 32Hz
+payload size: 53
+1000	667	889	666
+
+check rate: 32Hz
+payload size: 63
+1000	728	905	727
+
+check rate: 32Hz
+payload size: 73
+1000	788	929	787
+
+check rate: 32Hz
+payload size: 83
+1000	843	918	841
+
+check rate: 32Hz
+payload size: 93
+1000	905	916	904
+
+check rate: 32Hz
+payload size: 103
+1000	962	915	961
+
+check rate: 32Hz
+payload size: 110
+1000	1011	942	1010
+
+check rate: 16Hz
+payload size: 10
+1000	500	928	499
+
+check rate: 16Hz
+payload size: 33
+1000	550	942	549
+
+check rate: 16Hz
+payload size: 43
+1000	608	924	608
+
+check rate: 16Hz
+payload size: 53
+1000	669	938	667
+
+check rate: 16Hz
+payload size: 63
+1000	727	924	727
+
+check rate: 16Hz
+payload size: 73
+1000	783	904	781
+
+check rate: 16Hz
+payload size: 83
+1000	840	901	839
+
+check rate: 16Hz
+payload size: 93
+1000	900	903	899
+
+check rate: 16Hz
+payload size: 103
+1000	961	912	961
+
+check rate: 16Hz
+payload size: 110
+1000	992	894	991
+
+check rate: 8Hz
+payload size: 10
+1000	499	940	499
+
+check rate: 8Hz
+payload size: 33
+1000	550	949	550
+
+check rate: 8Hz
+payload size: 43
+1000	610	943	609
+
+check rate: 8Hz
+payload size: 53
+1000	667	919	667
+
+check rate: 8Hz
+payload size: 63
+1000	729	941	729
+
+check rate: 8Hz
+payload size: 73
+1000	789	942	788
+
+check rate: 8Hz
+payload size: 83
+1000	848	935	847
+
+check rate: 8Hz
+payload size: 93
+1000	914	955	913
+
+check rate: 8Hz
+payload size: 103
+1000	976	954	972
+
+check rate: 8Hz
+payload size: 110
+1000	1009	935	1008
+
+check rate: 4Hz
+payload size: 10
+1000	499	946	499
+
+check rate: 4Hz
+payload size: 33
+1000	551	965	550
+
+check rate: 4Hz
+payload size: 43
+1000	610	937	610
+
+check rate: 64Hz
+payload size: 10
+1000	2712	742	2708
+
+check rate: 64Hz
+payload size: 33
+1000	2810	728	2809
+
+check rate: 64Hz
+payload size: 43
+1000	2826	751	2822
+
+check rate: 64Hz
+payload size: 53
+1000	3216	803	3210
+
+check rate: 64Hz
+payload size: 63
+1000	3031	788	3022
+
+check rate: 64Hz
+payload size: 73
+1000	3107	767	3102
+
+check rate: 64Hz
+payload size: 83
+1000	3646	880	3642
+
+check rate: 64Hz
+payload size: 93
+1000	3079	777	3076
+
+check rate: 64Hz
+payload size: 103
+1000	3376	816	3372
+
+check rate: 64Hz
+payload size: 110
+1000	3261	777	3256
+
+check rate: 32Hz
+payload size: 10
+1000	4659	838	4656
+
+check rate: 32Hz
+payload size: 33
+1000	4592	818	4588
+
+check rate: 32Hz
+payload size: 43
+1000	4938	873	4929
+
+check rate: 32Hz
+payload size: 53
+1000	4713	820	4708
+
+check rate: 32Hz
+payload size: 63
+1000	4933	860	4924
+
+check rate: 32Hz
+payload size: 73
+1000	5112	846	5108
+
+check rate: 32Hz
+payload size: 83
+1000	4970	845	4964
+
+check rate: 32Hz
+payload size: 93
+1000	5267	844	5260
+
+check rate: 32Hz
+payload size: 103
+1000	5182	863	5176
+
+check rate: 32Hz
+payload size: 110
+1000	5235	841	5228
+
+check rate: 16Hz
+payload size: 10
+1000	7878	810	7863
+
+check rate: 16Hz
+payload size: 33
+1000	8119	845	8111
+
+check rate: 16Hz
+payload size: 43
+1000	7425	740	7416
+
+check rate: 16Hz
+payload size: 53
+1000	8571	863	8568
+
+check rate: 16Hz
+payload size: 63
+1000	8541	868	8528
+
+check rate: 16Hz
+payload size: 73
+1000	8744	887	8736
+
+check rate: 16Hz
+payload size: 83
+1000	8618	874	8600
+
+check rate: 16Hz
+payload size: 93
+1000	8991	897	8976
+
+check rate: 16Hz
+payload size: 103
+1000	8772	877	8760
+
+check rate: 16Hz
+payload size: 110
+1000	8989	861	8968
+
+check rate: 8Hz
+payload size: 10
+1000	16008	909	15983
+
+check rate: 8Hz
+payload size: 33
+1000	15750	895	15729
+
+check rate: 8Hz
+payload size: 43
+1000	15261	856	15232
+
+check rate: 8Hz
+payload size: 53
+1000	14960	840	14945
+
+check rate: 8Hz
+payload size: 63
+1000	15674	879	15664
+
+check rate: 8Hz
+payload size: 73
+1000	15186	844	15168
+
+check rate: 8Hz
+payload size: 83
+1000	14519	799	14496
+
+check rate: 8Hz
+payload size: 93
+1000	13823	715	13808
+
+check rate: 8Hz
+payload size: 103
+1000	13426	657	13408
+
+check rate: 8Hz
+payload size: 110
+1000	12899	632	12880
+
+check rate: 4Hz
+payload size: 10
+1000	24970	735	24929
+
+check rate: 4Hz
+payload size: 33
+1000	23483	685	23424
+
+check rate: 4Hz
+payload size: 43
+1000	22346	642	22304
+
+check rate: 4Hz
+payload size: 53
+1000	21185	587	21152
+
+check rate: 4Hz
+payload size: 63
+1000	17649	492	17599
+
+check rate: 4Hz
+payload size: 73
+1000	23529	652	23488
+
+check rate: 4Hz
+payload size: 83
+1000	17502	484	17472
+
+check rate: 4Hz
+payload size: 93
+1000	18687	485	18624
+
+check rate: 4Hz
+payload size: 103
+1000	20261	545	20224
+
+check rate: 4Hz
+payload size: 110
+1000	21829	571	21792
+
+check rate: 2Hz
+payload size: 10
+1000	36129	531	36095
+
+check rate: 2Hz
+payload size: 33
+1000	37981	561	37823
+
+check rate: 2Hz
+payload size: 43
+1000	44531	660	44480
+
+check rate: 2Hz
+payload size: 53
+1000	40985	597	40896
+
+check rate: 64Hz
+payload size: 10
+1000	500	861	500
+
+check rate: 64Hz
+payload size: 33
+1000	548	870	547
+
+check rate: 64Hz
+payload size: 43
+1000	604	846	604
+
+check rate: 64Hz
+payload size: 53
+1000	662	866	662
+
+check rate: 64Hz
+payload size: 63
+1000	720	868	720
+
+check rate: 64Hz
+payload size: 73
+1000	781	887	781
+
+check rate: 64Hz
+payload size: 83
+1000	840	877	839
+
+check rate: 64Hz
+payload size: 93
+1000	899	876	898
+
+check rate: 64Hz
+payload size: 103
+1000	950	844	949
+
+check rate: 64Hz
+payload size: 10
+1000	87	0	0
+
+check rate: 64Hz
+payload size: 33
+1000	99	0	0
+
+check rate: 64Hz
+payload size: 43
+1000	103	0	0
+
+check rate: 64Hz
+payload size: 53
+1000	116	0	0
+
+check rate: 64Hz
+payload size: 63
+1000	120	0	0
+
+check rate: 64Hz
+payload size: 73
+1000	132	0	0
+
+check rate: 64Hz
+payload size: 83
+1000	131	0	0
+
+check rate: 64Hz
+payload size: 93
+1000	144	0	0
+
+check rate: 64Hz
+payload size: 103
+1000	168	20	30
+
+check rate: 64Hz
+payload size: 110
+1000	199	27	35
+
+check rate: 32Hz
+payload size: 10
+1000	87	0	0
+
+check rate: 32Hz
+payload size: 33
+1000	100	0	0
+
+check rate: 32Hz
+payload size: 43
+1000	105	0	0
+
+check rate: 32Hz
+payload size: 53
+1000	114	0	0
+
+check rate: 32Hz
+payload size: 63
+1000	119	0	0
+
+check rate: 32Hz
+payload size: 73
+1000	132	0	0
+
+check rate: 32Hz
+payload size: 83
+1000	131	0	0
+
+check rate: 32Hz
+payload size: 93
+1000	145	0	0
+
+check rate: 32Hz
+payload size: 103
+1000	144	0	0
+
+check rate: 32Hz
+payload size: 110
+1000	150	0	0
+
+check rate: 16Hz
+payload size: 10
+1000	612	833	613
+
+check rate: 16Hz
+payload size: 33
+1000	723	956	724
+
