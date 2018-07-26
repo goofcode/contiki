@@ -1,4 +1,4 @@
-all: sender
+all: sender receiver
 
 CONTIKI = ../..
 

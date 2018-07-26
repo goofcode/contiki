@@ -2,6 +2,7 @@
 #include "net/rime/rime.h"
 #include "dev/leds.h"
 #include "dev/serial-line.h"
+#include "contiki-net.h"
 
 #include <stdio.h> /* For printf() */
 
@@ -10,14 +11,16 @@ PROCESS(receiver_proc, "receiver process");
 AUTOSTART_PROCESSES(&receiver_proc);
 /*---------------------------------------------------------------------------*/
 
-static int count = 0;
+int tx_count;
+
+static int count;
 static int receiving = -1;
 static clock_time_t begin_time, end_time;
 
 static void
 broadcast_recv(struct broadcast_conn *c, const linkaddr_t *from)
 {
-  if(receiving){
+  if(receiving == 1){
     // if this is first packet
     if (count == 0)
       begin_time = clock_time();
@@ -37,25 +40,24 @@ static struct broadcast_conn broadcast;
 
 PROCESS_THREAD(receiver_proc, ev, data)
 {
-  static struct etimer et;
+	static radio_value_t cca_thresh;
 
   PROCESS_EXITHANDLER(broadcast_close(&broadcast);)
   PROCESS_BEGIN();
 
   broadcast_open(&broadcast, 125, &recv_callbacks);
-
   printf("ready\n");
 
   while(1){
 
 		// wait for serial "start"
-		PROCESS_YIELD_UNTIL(ev == serial_line_event_message && strcmp((char *)data, "start\n"));
+		PROCESS_YIELD_UNTIL(ev == serial_line_event_message && strcmp((char*)data, "start") == 0);
 
 		count = 0;
 		receiving = 1;
 
     // wait for serial "stop"
-		PROCESS_YIELD_UNTIL(ev == serial_line_event_message && strcmp((char *)data, "stop\n"));
+		PROCESS_YIELD_UNTIL(ev == serial_line_event_message && strcmp((char*)data, "stop") == 0);
 		receiving = -1;
 
 

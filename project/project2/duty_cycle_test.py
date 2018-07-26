@@ -2,6 +2,7 @@ import subprocess
 import sys
 import time
 
+impo
 import serial
 
 check_rates = [2, 4, 8, 16, 32, 64]

@@ -1,9 +1,9 @@
 
-#define TEST_CSMA
-// #define TEST_DUTY_CYCLE
-// #define TEST_NO_AUTO_ACK
+//#define TEST_CSMA
+//#define TEST_DUTY_CYCLE
+//#define TEST_NO_AUTO_ACK
 
-#define MAX_PKT_NUM 1
+#define MAX_PKT_NUM 1000
 #define CHANNEL_NUM 125
 
 // mac protocol

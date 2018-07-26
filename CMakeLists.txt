@@ -1340,13 +1340,12 @@ add_executable(contiki
         project/project1/sender.c
         project/project1/symbols.c
         project/project1/symbols.h
-        project/project2/example-broadcast.c
         project/project2/project-conf.h
         project/project2/receiver.c
         project/project2/sender.c
         project/project2/symbols.c
         project/project2/symbols.h
-        project/test/project-conf.h
-        project/test/sender.c
-        project/test/symbols.c
-        project/test/symbols.h)
+        project/project3/sender.c
+        project/project3/receiver.c
+        project/project3/project-conf.h
+        )
