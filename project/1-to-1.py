@@ -1,11 +1,19 @@
 import sys
 
 import time
-from motetest import *
 
-cca_thresholds = [-90, -75, -60, -45, -30, -15]
+import os
+from .motetest import *
+
+pkt_sizes = [10, 33, 43, 53, 63, 73, 83, 93, 103, 110]
+
+project = 'project4'
+test_inputs = pkt_sizes
 
 if __name__ == "__main__":
+
+    # move to project directory
+    os.chdir(project)
 
     # get motes
     motes = get_motes_ports()
@@ -33,7 +41,7 @@ if __name__ == "__main__":
 
     # test for every packet size
     for i in range(5):
-        for cca_threshold in cca_thresholds:
+        for test_input in test_inputs:
             # start receiver and sender (with packet size)
             receiver_serial.start()
             print('receiver started')
@@ -42,7 +50,7 @@ if __name__ == "__main__":
             sender_serial.start()
             print('sender started')
 
-            sender_serial.write(str(cca_threshold) + '\n')
+            sender_serial.write(str(test_input) + '\n')
 
             # wait for sender to finish sending
             sender_serial.wait_finished()
@@ -56,10 +64,10 @@ if __name__ == "__main__":
 
             result = '{}\t{}'.format(sender_result, receiver_result)
 
-            with open('1-to-1-cca.txt', 'a') as f:
+            with open('1-to-1.txt', 'a') as f:
                 f.write(result + '\n')
 
-        with open('1-to-1-cca.txt', 'a') as f:
+        with open('1-to-1.txt', 'a') as f:
             f.write('\n')
 
     # close serial ports

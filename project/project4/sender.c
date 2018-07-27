@@ -62,11 +62,12 @@ PROCESS_THREAD(sender_proc, ev, data)
   PROCESS_EXITHANDLER(broadcast_close(&broadcast));
   PROCESS_BEGIN();
 
-  for (i = 0; i < 110; i++) payload[i] = (uint8_t) i;
-  broadcast_open(&broadcast, 125, &recv_callbacks);
+	broadcast_open(&broadcast, 125, &recv_callbacks);
 
+  for (i = 0; i < 110; i++) payload[i] = (uint8_t) i;
+
+	/* default settings */
 	tx_payload_size = 110;
-	cca_thresh = -90;
 
 	printf("ready\n");
 
@@ -77,10 +78,6 @@ PROCESS_THREAD(sender_proc, ev, data)
 
 		PROCESS_YIELD_UNTIL(ev == serial_line_event_message);
 		input = atoi((char*)data);
-
-//		NETSTACK_RADIO.set_value(RADIO_PARAM_CCA_THRESHOLD, input);
-//		NETSTACK_RADIO.get_value(RADIO_PARAM_CCA_THRESHOLD, &input);
-//		printf("cca threshold: %d\n", input);
 
 		tx_payload_size = input;
 		tx_count = 0;
