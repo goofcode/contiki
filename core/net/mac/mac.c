@@ -40,8 +40,6 @@
 #define PRINTF(...)
 #endif /* DEBUG */
 
-extern int tx_count;
-
 /*---------------------------------------------------------------------------*/
 void
 mac_call_sent_callback(mac_callback_t sent, void *ptr, int status, int num_tx)
@@ -57,7 +55,6 @@ mac_call_sent_callback(mac_callback_t sent, void *ptr, int status, int num_tx)
     break;
   case MAC_TX_OK:
     PRINTF("mac: sent after %d tx\n", num_tx);
-		tx_count++;
 		break;
   default:
     PRINTF("mac: error %d after %d tx\n", status, num_tx);
