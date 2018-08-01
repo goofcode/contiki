@@ -22,27 +22,17 @@ static void
 broadcast_recv(struct broadcast_conn *c, const linkaddr_t *from){
   /* do nothing */
 }
+
 static void
 broadcast_sent (struct broadcast_conn *ptr, int status, int num_tx){
 
-	static char msg[] = "";
+	if (status == MAC_TX_OK)
+		tx_count++;
+//	else
+//		printf("broadcast sent: %d\n",status);
 
-	switch (status){
-
-		case MAC_TX_OK:
-			tx_count++;
-			process_post_synch(&sender_proc, PROCESS_EVENT_CONTINUE, msg);
-			break;
-
-		case MAC_TX_ERR:
-		case MAC_TX_COLLISION:
-			printf("sent callback: status %d\n", status);
-			break;
-
-		default:
-			printf("sent callback: unhandled status %d \n", status);
-			break;
-	}
+	// start next tx
+	process_post(&sender_proc, PROCESS_EVENT_CONTINUE, "");
 }
 
 static const struct broadcast_callbacks recv_callbacks = {broadcast_recv, broadcast_sent};
@@ -51,13 +41,8 @@ static struct broadcast_conn broadcast;
 PROCESS_THREAD(sender_proc, ev, data)
 {
   static uint8_t payload[110];
-  static int i;
   static clock_time_t begin_time, end_time;
-
-	static int tx_payload_size;
-	static int tx_delay;
-	static int cca_thresh, input;
-	static struct etimer et;
+	static int i, tx_payload_size, input;
 
   PROCESS_EXITHANDLER(broadcast_close(&broadcast));
   PROCESS_BEGIN();
@@ -74,14 +59,13 @@ PROCESS_THREAD(sender_proc, ev, data)
 	// wait for serial "start"
 	while(1){
 
-		PROCESS_YIELD_UNTIL(ev == serial_line_event_message && strcmp((char*)data, "start")==0);
+		PROCESS_WAIT_EVENT_UNTIL(ev == serial_line_event_message && strcmp((char*)data, "start")==0);
 
-		PROCESS_YIELD_UNTIL(ev == serial_line_event_message);
+		PROCESS_WAIT_EVENT_UNTIL(ev == serial_line_event_message);
 		input = atoi((char*)data);
-
 		tx_payload_size = input;
-		tx_count = 0;
 
+		tx_count = 0;
 		begin_time = clock_time();
 
 		for (i = 0; i < MAX_PKT_NUM; ++i) {
@@ -90,7 +74,7 @@ PROCESS_THREAD(sender_proc, ev, data)
 			broadcast_send(&broadcast);
 
 			leds_toggle(LEDS_GREEN);
-			PROCESS_WAIT_EVENT_UNTIL(ev == PROCESS_EVENT_CONTINUE);
+			PROCESS_WAIT_EVENT_UNTIL(ev==PROCESS_EVENT_CONTINUE);
 		}
 
 		end_time = clock_time();

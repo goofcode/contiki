@@ -6,10 +6,9 @@ import os
 import numpy as np
 from motetest import *
 
-pkt_sizes = [10, 33, 43, 53, 63, 73, 83, 93, 103, 110]
+check_rates = [2, 4, 8, 16, 32, 64, 128]
 
 project = 'project4'
-test_inputs = pkt_sizes
 
 if __name__ == "__main__":
 
@@ -24,31 +23,28 @@ if __name__ == "__main__":
         print('need at least 2 motes')
         sys.exit(0)
 
-    make_clean()
-
-    # upload receiver & connect serial, wait for ready
-    # make_upload('receiver', motes[0], ['TEST_DC_CHECK_RATE={}'.format(check_rate)])
-    make_upload('receiver', motes[0], [])
-    receiver_serial = SkySerial(motes[0])
-    receiver_serial.wait_ready()
-    print('connected to receiver')
-
-    # upload sender & connect serial, wait for ready
-    # make_upload('sender', motes[1], ['TEST_DC_CHECK_RATE={}'.format(check_rate)])
-    make_upload('sender', motes[1], [])
-    sender_serial = SkySerial(motes[1])
-    sender_serial.wait_ready()
-    print('connected to sender')
-
     # test result of tx_count, tx_clock, rx_count, rx_clock
     result = []
-    for i in range(len(test_inputs)):
+    for i in range(len(check_rates)):
         result.append([])
 
-    # test for every packet size
-    for i in range(5):
+    for i in range(2):
 
-        for idx, test_input in enumerate(test_inputs):
+        # for every testing check rate,
+        for idx, check_rate in enumerate(check_rates):
+            make_clean()
+
+            # upload receiver & connect serial, wait for ready
+            make_upload('receiver', motes[0], ['NETSTACK_CONF_RDC_CHANNEL_CHECK_RATE={}'.format(check_rate)])
+            receiver_serial = SkySerial(motes[0])
+            receiver_serial.wait_ready()
+            print('connected to receiver')
+
+            # upload sender & connect serial, wait for ready
+            make_upload('sender', motes[1], ['NETSTACK_CONF_RDC_CHANNEL_CHECK_RATE={}'.format(check_rate)])
+            sender_serial = SkySerial(motes[1])
+            sender_serial.wait_ready()
+            print('connected to sender')
 
             # start receiver and sender (with packet size)
             receiver_serial.start()
@@ -56,7 +52,7 @@ if __name__ == "__main__":
             print('receiver started')
 
             sender_serial.start()
-            sender_serial.write(str(test_input) + '\n')
+            sender_serial.write('110\n')
             print('sender started')
 
             # wait for sender to finish sending
@@ -71,20 +67,21 @@ if __name__ == "__main__":
             # append result for this test_input
             current_result = [int(x) for x
                               in '{}\t{}'.format(sender_result, receiver_result).split('\t')]
+
             result[idx].append(current_result)
             print(current_result)
             # print(result)
-
-    result = np.mean(result, axis=1).tolist()
-    print(result)
-
-    # save result
-    with open('result.csv', 'a') as f:
-        csv_writer = csv.writer(f)
-        for row in result:
-            csv_writer.writerow(row)
 
     # close serial ports
     sender_serial.close()
     receiver_serial.close()
 
+    print(result)
+    result = np.mean(result, axis=1).tolist()
+    print(result)
+
+    # # save result
+    # with open('result.csv', 'a') as f:
+    #     csv_writer = csv.writer(f)
+    #     for row in result:
+    #         csv_writer.writerow(row)

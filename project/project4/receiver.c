@@ -11,9 +11,7 @@ PROCESS(receiver_proc, "receiver process");
 AUTOSTART_PROCESSES(&receiver_proc);
 /*---------------------------------------------------------------------------*/
 
-int tx_count;
-
-static int count;
+static int rx_count;
 static int receiving = -1;
 static clock_time_t begin_time, end_time;
 
@@ -22,12 +20,12 @@ broadcast_recv(struct broadcast_conn *c, const linkaddr_t *from)
 {
   if(receiving == 1){
     // if this is first packet
-    if (count == 0)
+    if (rx_count == 0)
       begin_time = clock_time();
 
     end_time = clock_time();
 
-    count++;
+		rx_count++;
     leds_toggle(LEDS_BLUE);
   }
   else{
@@ -40,8 +38,6 @@ static struct broadcast_conn broadcast;
 
 PROCESS_THREAD(receiver_proc, ev, data)
 {
-	static radio_value_t cca_thresh;
-
   PROCESS_EXITHANDLER(broadcast_close(&broadcast);)
   PROCESS_BEGIN();
 
@@ -51,17 +47,17 @@ PROCESS_THREAD(receiver_proc, ev, data)
   while(1){
 
 		// wait for serial "start"
-		PROCESS_YIELD_UNTIL(ev == serial_line_event_message && strcmp((char*)data, "start") == 0);
+		PROCESS_WAIT_EVENT_UNTIL(ev == serial_line_event_message && strcmp((char*)data, "start") == 0);
 
-		count = 0;
+		rx_count = 0;
 		receiving = 1;
 
     // wait for serial "stop"
-		PROCESS_YIELD_UNTIL(ev == serial_line_event_message && strcmp((char*)data, "stop") == 0);
+		PROCESS_WAIT_EVENT_UNTIL(ev == serial_line_event_message && strcmp((char*)data, "stop") == 0);
 		receiving = -1;
 
 
-    printf("%d\t%lu\n", count, end_time-begin_time);
+    printf("%d\t%lu\n", rx_count, end_time-begin_time);
   }
 
   PROCESS_END();

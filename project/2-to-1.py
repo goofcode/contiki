@@ -1,11 +1,20 @@
 import sys
-
 import time
+import os
+import numpy as np
+import csv
+
 from motetest import *
 
 pkt_sizes = [10, 33, 43, 53, 63, 73, 83, 93, 103, 110]
 
+project = 'project4'
+test_inputs = pkt_sizes
+
 if __name__ == "__main__":
+
+    # move to project directory
+    os.chdir(project)
 
     # get motes
     motes = get_motes_ports()
@@ -31,21 +40,25 @@ if __name__ == "__main__":
         sender_serial[i].wait_ready()
         print('connected to sender {}'.format(i))
 
-    # test for every packet size
+    # test result of tx_count, tx_clock, rx_count, rx_clock
+    result = []
+    for i in range(len(test_inputs)):
+        result.append([])
 
+    # test for every packet size
     for test in range(5):
 
-        for pkt_size in pkt_sizes:
+        for idx, test_input in enumerate(test_inputs):
 
             # start receiver and sender (with packet size)
             receiver_serial.start()
             print('receiver started')
-            time.sleep(0.5)
+            time.sleep(0.3)
 
             for i in range(2):
                 sender_serial[i].start()
+                sender_serial[i].write(str(test_input) + '\n')
                 print('sender {} started'.format(i))
-                sender_serial[i].write(str(pkt_size) + '\n')
 
             # wait for sender to finish sending
             sender_result = []
@@ -53,20 +66,24 @@ if __name__ == "__main__":
                 sender_serial[i].wait_finished()
                 sender_result.append(sender_serial[i].read_line()[:-1])
 
-            time.sleep(0.5)
-
             # stop receiver and get receiver result
+            time.sleep(0.5)
             receiver_serial.stop()
             receiver_result = receiver_serial.read_line()[:-1]
 
-            result = '{}\t{}\t{}'.format(sender_result[0], sender_result[1], receiver_result)
-            print('packet size: {}, result: {}\n'.format(pkt_size, result))
+            current_result = [int(x) for x
+                              in '{}\t{}\t{}'.format(sender_result[0], sender_result[1],receiver_result).split('\t')]
+            result[idx].append(current_result)
+            print(current_result)
 
-            with open('2-to-1.txt', 'a') as f:
-                f.write(result + '\n')
+    result = np.mean(result, axis=1).tolist()
+    print(result)
 
-        with open('2-to-1.txt', 'a') as f:
-            f.write('\n')
+    # save result
+    with open('result.csv', 'a') as f:
+        csv_writer = csv.writer(f)
+        for row in result:
+            csv_writer.writerow(row)
 
     # close serial ports
     sender_serial[0].close()
