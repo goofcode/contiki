@@ -926,4 +926,7 @@ add_executable(contiki
         project/project4/sender.c
         project/project4/receiver.c
         project/project4/project-conf.h
+        project/project5/sender.c
+        project/project5/receiver.c
+        project/project5/project-conf.h
         )
